@@ -3,16 +3,23 @@ import 'package:hexcolor/hexcolor.dart';
 
 class Answer extends StatelessWidget {
   final VoidCallback selectHandler;
-  const Answer(this.selectHandler, {Key? key}) : super(key: key);
+  final String answerText;
+
+  const Answer(this.selectHandler, this.answerText, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: Text(
-        "Open-source",
-        style: TextStyle(
-          fontWeight: FontWeight.w400,
-          color: HexColor("#FEFEFE"),
+      child: SizedBox(
+        width: 200,
+        child: Text(
+          answerText,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: HexColor("#FEFEFE"),
+          ),
         ),
       ),
       style: ButtonStyle(
