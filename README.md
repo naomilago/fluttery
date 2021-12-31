@@ -1,4 +1,4 @@
-# fluttery
+# fluttery dev
 
 A new Flutter project.
 
