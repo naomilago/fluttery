@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:hexcolor/hexcolor.dart";
 import './quiz.dart';
+import './question.dart';
 
 void main() {
   runApp(const MyApp());
@@ -73,7 +74,7 @@ class _MyAppState extends State<MyApp> {
   var _indexQuestion = 0;
   var _totalScore = 0;
 
-  void _answerQuestion(int score) {
+  _answerQuestion(int score) {
     _totalScore += score;
 
     setState(() {
@@ -125,14 +126,7 @@ class _MyAppState extends State<MyApp> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Padding(
-                                  padding: EdgeInsets.only(bottom: 32),
-                                  child: SizedBox(
-                                    width: 360,
-                                    child: Question(
-                                      'You did it, girl 🤎',
-                                    ),
-                                  )),
+                              const Question('You did it, girl 🤎'),
                               ElevatedButton(
                                 child: SizedBox(
                                   width: 200,

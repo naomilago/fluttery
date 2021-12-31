@@ -9,12 +9,16 @@ class Question extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(textQuestion,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontWeight: FontWeight.w700,
-          fontSize: 20,
-          color: HexColor("#6B443D"),
-        ));
+    return Padding(
+        padding: const EdgeInsets.only(bottom: 32),
+        child: SizedBox(
+            width: 360,
+            child: Text(textQuestion,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 20,
+                  color: HexColor("#6B443D"),
+                ))));
   }
 }

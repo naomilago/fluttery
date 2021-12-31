@@ -1,3 +1,7 @@
+import 'package:flutter/material.dart';
+import './question.dart';
+import 'package:hexcolor/hexcolor.dart';
+
 class Result extends StatelessWidget {
   const Result({Key? key}) : super(key: key);
 
@@ -9,8 +13,8 @@ class Result extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                    padding: const EdgeInsets.only(bottom: 32),
+                const Padding(
+                    padding: EdgeInsets.only(bottom: 32),
                     child: SizedBox(
                       width: 360,
                       child: Question(
@@ -32,7 +36,7 @@ class Result extends StatelessWidget {
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(HexColor("#915C53"))),
-                  onPressed: _restart,
+                  onPressed: null,
                 )
               ],
             )));
