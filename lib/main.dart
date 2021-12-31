@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:hexcolor/hexcolor.dart";
 import './quiz.dart';
-import './question.dart';
+import './result.dart';
 
 void main() {
   runApp(const MyApp());
@@ -72,14 +72,15 @@ class _MyAppState extends State<MyApp> {
   ];
 
   var _indexQuestion = 0;
-  var _totalScore = 0;
+  double _totalScore = 0.00;
 
-  _answerQuestion(int score) {
+  void _answerQuestion(double score) {
     _totalScore += score;
 
     setState(() {
-      if (_indexQuestion <= 3 && _indexQuestion >= 0) {
+      if (_indexQuestion < _data.length) {
         _indexQuestion++;
+        print('We got more questions!');
       } else {
         _indexQuestion = 0;
       }
@@ -120,32 +121,7 @@ class _MyAppState extends State<MyApp> {
                       answerQuestion: _answerQuestion,
                       indexQuestion: _indexQuestion,
                       data: _data)
-                  : Center(
-                      child: Align(
-                          alignment: Alignment.center,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Question('You did it, girl 🤎'),
-                              ElevatedButton(
-                                child: SizedBox(
-                                  width: 200,
-                                  child: Text(
-                                    'Restart',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      color: HexColor("#FEFEFE"),
-                                    ),
-                                  ),
-                                ),
-                                style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        HexColor("#915C53"))),
-                                onPressed: _restart,
-                              )
-                            ],
-                          ))))),
+                  : Result(_totalScore))),
     );
   }
 }
