@@ -4,23 +4,26 @@ import 'package:hexcolor/hexcolor.dart';
 
 class Result extends StatelessWidget {
   final double resultScore;
+  final VoidCallback resetHandler;
 
-  const Result(this.resultScore, {Key? key}) : super(key: key);
+  const Result(this.resultScore, this.resetHandler, {Key? key}) : super(key: key);
 
   String get resultPhrase {
     String resultText;
-    if (resultScore <= 10.00) {
+    final score = num.parse(resultScore.toStringAsFixed(2));
+
+    if (score <= 10.00) {
       resultText =
-          'You succesfully completed the quiz and scored $resultScore points 🤎! \n Want to try again?';
-    } else if (resultScore > 15.00 && resultScore <= 25.00) {
+          'You tried it and scored $score points 🤎! \n Want to try again?';
+    } else if (score > 15.00 && score <= 25.00) {
       resultText =
-          'You are good! You completed the quiz and scored $resultScore points 🤎! \n Wanto to try again?';
-    } else if (resultScore > 25.00 && resultScore <= 40.00) {
+          'You did it and scored $score points 🤎! \n Want to try again?';
+    } else if (score > 25.00 && score <= 40.00) {
       resultText =
-          'You are great! You completed the quiz and scored $resultScore points 🤎! \n Wanto to try again?';
+          'You got it and scored $score points 🤎! \n Want to try again?';
     } else {
       resultText =
-          'You are stunning! You completed the quiz and scored $resultScore points 🤎! \n Wanto to try again?';
+          'You nailed it and scored $score points 🤎! \n Want to try again?';
     }
 
     return resultText;
@@ -35,7 +38,7 @@ class Result extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                    padding: EdgeInsets.only(bottom: 32),
+                    padding: const EdgeInsets.only(bottom: 32),
                     child: SizedBox(
                       width: 360,
                       child: Question(
@@ -57,7 +60,7 @@ class Result extends StatelessWidget {
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(HexColor("#915C53"))),
-                  onPressed: null,
+                  onPressed: resetHandler,
                 )
               ],
             )));

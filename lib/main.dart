@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
         {'text': 'Open-source', 'score': 9.73},
         {'text': 'Shareware', 'score': 4.61},
         {'text': 'Both', 'score': 1.95},
-        {'text': 'None of the above', 'score': 0},
+        {'text': 'None of the above', 'score': 0.00},
       ]
     },
     {
@@ -34,19 +34,15 @@ class _MyAppState extends State<MyApp> {
       'answers': [
         {'text': 'Java', 'score': 2.3},
         {'text': 'HTML', 'score': 0.32},
-        {'text': 'JavaScript', 'score': 3},
+        {'text': 'JavaScript', 'score': 3.00},
         {'text': 'Dart', 'score': 9.98},
-        'Java',
-        'HTML',
-        'Javascript',
-        'Dart'
       ]
     },
     {
       'questionText': 'Which of the following widgets is used for layouts?',
       'answers': [
         {'text': 'Text', 'score': 0.64},
-        {'text': 'Column', 'score': 10},
+        {'text': 'Column', 'score': 10.00},
         {'text': 'Inkwell', 'score': 3.28},
         {'text': 'Expanded', 'score': 1.02}
       ]
@@ -64,7 +60,7 @@ class _MyAppState extends State<MyApp> {
       'questionText': 'When was Flutter released?',
       'answers': [
         {'text': '2016', 'score': 5.53},
-        {'text': '2017', 'score': 10},
+        {'text': '2017', 'score': 10.00},
         {'text': '2013', 'score': 2.47},
         {'text': '2019', 'score': 2.35}
       ]
@@ -78,22 +74,14 @@ class _MyAppState extends State<MyApp> {
     _totalScore += score;
 
     setState(() {
-      if (_indexQuestion < _data.length) {
-        _indexQuestion++;
-        print('We got more questions!');
-      } else {
-        _indexQuestion = 0;
-      }
+      _indexQuestion += 1;
     });
   }
 
   void _restart() {
     setState(() {
-      if (_indexQuestion <= 3 && _indexQuestion >= 0) {
-        _indexQuestion++;
-      } else {
-        _indexQuestion = 0;
-      }
+      _indexQuestion = 0;
+      _totalScore = 0;
     });
   }
 
@@ -116,12 +104,12 @@ class _MyAppState extends State<MyApp> {
           ),
           body: Align(
               alignment: Alignment.center,
-              child: (_indexQuestion <= 3 && _indexQuestion >= 0)
+              child: (_indexQuestion <= 4 && _indexQuestion >= 0)
                   ? Quiz(
                       answerQuestion: _answerQuestion,
                       indexQuestion: _indexQuestion,
                       data: _data)
-                  : Result(_totalScore))),
+                  : Result(_totalScore, _restart))),
     );
   }
 }
